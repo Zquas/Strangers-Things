@@ -16,7 +16,7 @@ function App() {
           <Route path="new-post" element={<NewPost authToken={authToken} BASE_URL={BASE_URL}/>} />
           <Route path="login" element={<Login authToken={authToken} setAuthToken={setAuthToken} BASE_URL={BASE_URL} />} />
           <Route path="logout" element={<Logout authToken={authToken} setAuthToken={setAuthToken} setUserID={setUserID} />}/>
-          <Route path="profile" element={<Profile authToken={authToken} BASE_URL={BASE_URL} setUserID={setUserID} />} />
+          <Route path="profile" element={<Profile authToken={authToken} BASE_URL={BASE_URL} setUserID={setUserID} userID={userID} />} />
           <Route path="register" element={<Register authToken={authToken} setAuthToken={setAuthToken} BASE_URL={BASE_URL} />} />
       </Routes>
     </div>

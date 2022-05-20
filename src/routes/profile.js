@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PostCard from "../PostCard";
 import Inbox from "../Inbox";
+import { useNavigate } from 'react-router-dom';
 
-const Profile = ({ authToken, BASE_URL, setUserID }) => {
-
+const Profile = ({ authToken, BASE_URL, setUserID, userID }) => {
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({})
     const [userPosts, setUserPosts] = useState([])
     const [userMessages, setUserMessages] = useState([])
@@ -33,7 +34,11 @@ const Profile = ({ authToken, BASE_URL, setUserID }) => {
 
     useEffect(() => {
         getUserData();
+        if (!authToken) {
+            navigate('/login')
+        }
         console.log(userData.messages)
+
     }, [])
 
 
@@ -43,11 +48,11 @@ const Profile = ({ authToken, BASE_URL, setUserID }) => {
         <div className='content'>
             <h2>Profile</h2>
             <h3>{authToken ? `Welcome ${userData.username}!` : 'You are not logged in'}</h3>
-            
+
             {userMessages.length > 0 ? 
                 <>
                     <h3>Your Messages</h3>
-                    <Inbox userMessages={userMessages} />
+                    <Inbox userMessages={userMessages} userID={userID} />
                 </> 
                 : null 
             }

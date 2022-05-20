@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
@@ -8,10 +8,11 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
 
 
 const NewPost = ({ BASE_URL, authToken }) => {
-
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
@@ -19,6 +20,12 @@ const NewPost = ({ BASE_URL, authToken }) => {
     const [delivery, setDelivery] = useState(false)
     const [postSuccess, setPostSuccess] = useState(false)
     const [postFailure, setPostFailure] = useState(false)
+
+    useEffect(() => {
+        if (!authToken) {
+            navigate('/login')
+        }
+    }, [])
 
     const handleChange = (e, setState) => {
         if (e.target.type === 'checkbox') {
@@ -42,7 +49,7 @@ const NewPost = ({ BASE_URL, authToken }) => {
                 body: JSON.stringify({
                     post: {
                         title: title,
-                        description: title,
+                        description: description,
                         price: price,
                         ...(location && { location: location }),
                         ...(delivery && { willDeliver: delivery }),

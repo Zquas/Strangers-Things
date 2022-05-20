@@ -6,7 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const Inbox = ({ userMessages }) => {
+const Inbox = ({ userMessages, userID }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange =
@@ -17,7 +17,7 @@ const Inbox = ({ userMessages }) => {
   return (
     <div>
         {
-            userMessages.map(({_id, fromUser, post, content}) => {
+            userMessages.filter(({fromUser}) => fromUser._id !== userID).map(({_id, fromUser, post, content}) => {
                 return (
                     <Accordion expanded={expanded === `${_id}`} onChange={handleChange(`${_id}`)} key={_id} >
                         <AccordionSummary
