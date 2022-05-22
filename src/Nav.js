@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { NavLink, NavLinkProps } from 'react-router-dom'
-import { forwardRef } from 'react';
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,43 +8,27 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 
-const pages = ['Posts', 'Register'];
-const settings = ['Profile', 'Messages', 'Logout'];
-
 const Nav = ({ authToken }) => {
-  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
-    //need logic for navigating to posts and register
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    //need logic for navigating to profile, messages, logout
-    setAnchorElUser(null);
-  };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: '#006d77' }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar >
           <LoyaltyIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -58,7 +38,7 @@ const Nav = ({ authToken }) => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              fontFamily: 'Grape Nuts',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -97,16 +77,46 @@ const Nav = ({ authToken }) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem href='/' onClick={() => {
+              <MenuItem component={Link} to='/' onClick={() => {
                 handleCloseNavMenu()
               }}>
                 <Typography textAlign="center">Posts</Typography>
               </MenuItem>
-              <MenuItem href='/register' onClick={() => {
-                handleCloseNavMenu()
-              }}>
-                <Typography textAlign="center">Register</Typography>
-              </MenuItem>
+              {!authToken ? null : 
+                <MenuItem component={Link} to='/profile' onClick={() => {
+                  handleCloseNavMenu()
+                }}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+              }
+              {!authToken ? null : 
+                <MenuItem component={Link} to='/new-post' onClick={() => {
+                  handleCloseNavMenu()
+                }}>
+                  <Typography textAlign="center">New Post</Typography>
+                </MenuItem>
+              }
+              {authToken ? null : 
+                <MenuItem component={Link} to='/login' onClick={() => {
+                  handleCloseNavMenu()
+                }}>
+                  <Typography textAlign="center">Login</Typography>
+                </MenuItem>
+              }
+              {authToken ? null : 
+                <MenuItem component={Link} to='/register' onClick={() => {
+                  handleCloseNavMenu()
+                }}>
+                  <Typography textAlign="center">Register</Typography>
+                </MenuItem>
+              }
+              {!authToken ? null : 
+                <MenuItem component={Link} to='/logout' onClick={() => {
+                  handleCloseNavMenu()
+                }}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              }
             </Menu>
           </Box>
           <LoyaltyIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -119,7 +129,7 @@ const Nav = ({ authToken }) => {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: 'Grape Nuts',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -188,23 +198,3 @@ const Nav = ({ authToken }) => {
   );
 };
 export default Nav;
-
-// const Nav = ({ authToken }) => {
-//     return (
-//         <nav
-//         style={{
-//           borderBottom: "solid 1px",
-//           paddingBottom: "1rem",
-//         }}
-//       >
-//         <Link to="/">Posts</Link> |{" "}
-//         <Link to="/profile">Profile</Link> |{" "}
-//         {!authToken ? null :<Link to='/new-post'>New Post</Link>}
-//         {authToken ? null : <Link to="/login">Login</Link> }
-//         {!authToken ? null :<Link to='/logout'>Logout</Link>}
-//         {authToken ? null : <Link to="/register">Register</Link>}
-//       </nav>
-//     )
-// }
-
-// export default Nav;

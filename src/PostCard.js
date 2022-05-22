@@ -1,9 +1,7 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MessageButton from './MessageButton';
@@ -34,7 +32,7 @@ const PostCard = ({ BASE_URL, title, author, price, location, description, isAut
 
     return (
         <>
-          <Card sx={{ minWidth: 275, width: 300, margin: '20px' }}>
+          <Card sx={{ minWidth: 275, width: 300, margin: '20px', bgcolor: '#e9f2ec' }}>
             <div className='card-contents'>
               <div className='card-details'>
                 <CardContent>
@@ -59,9 +57,8 @@ const PostCard = ({ BASE_URL, title, author, price, location, description, isAut
                 </CardContent>
               </div>
               <div className='card-buttons'>
-                <CardActions>
-                  {/* { userID===authorID || !userID ? null : <Button size="small">Send Message</Button>} */}
-                  { userID===authorID || !userID ? null : <MessageButton author={author} title={title} authToken={authToken} postID={id} BASE_URL={BASE_URL} />}
+                <CardActions >
+                  { userID===authorID || !userID ? null : <MessageButton author={author} title={title} authToken={authToken} postID={id} BASE_URL={BASE_URL}  />}
                   { messages && messages.length > 0 ? <MessageInboxButton title={title} messages={messages} /> : null }
                 </CardActions>
               </div>

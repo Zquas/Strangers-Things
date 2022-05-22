@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
@@ -24,7 +22,7 @@ const MessageInboxButton = ({ messages, title }) => {
 
   return (
     <div>
-        <Badge badgeContent={`${messages.length}`} color="primary">
+        <Badge badgeContent={`${messages.length}`} color="primary" >
             <MailIcon onClick={(e) => {handleClickOpen()}} />
         </Badge>
         <Dialog open={open} onClose={handleClose}>

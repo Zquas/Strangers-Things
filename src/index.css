@@ -12,12 +12,12 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', 'Grape Nuts'
     monospace;
 }
 
-.content {
-  padding:20px;
+h2, h3  {
+  padding: 0 20px;
 }
 
 .post-cards {

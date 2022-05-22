@@ -19,7 +19,7 @@ const Inbox = ({ userMessages, userID }) => {
         {
             userMessages.filter(({fromUser}) => fromUser._id !== userID).map(({_id, fromUser, post, content}) => {
                 return (
-                    <Accordion expanded={expanded === `${_id}`} onChange={handleChange(`${_id}`)} key={_id} >
+                    <Accordion sx={{ mx: 2.5 }} expanded={expanded === `${_id}`} onChange={handleChange(`${_id}`)} key={_id} >
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"

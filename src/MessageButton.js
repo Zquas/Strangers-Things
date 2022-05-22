@@ -50,7 +50,7 @@ const MessageButton = ({ author, title, BASE_URL, authToken, postID }) => {
 
   return (
     <div>
-      <Button variant="text" endIcon={<SendIcon />} onClick={handleClickOpen}>
+      <Button variant="text" endIcon={<SendIcon /> } onClick={handleClickOpen} sx={{ color:'#006d77' }} >
         Send Message
       </Button>
       <Dialog open={open} onClose={handleClose}>

@@ -80,7 +80,7 @@ const Login = ({ setAuthToken, BASE_URL }) => {
                     value={password}
                     onChange={handlePassword}
                 />
-                <Button className='reg-form-elem' type='submit' variant="contained">Log in</Button>
+                <Button className='reg-form-elem' type='submit' variant="contained" >Log in</Button>
                 <h4>{loginResponse ? loginResponse : ''}</h4>
             </Box>
         </div>

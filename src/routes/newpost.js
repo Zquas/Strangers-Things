@@ -143,7 +143,7 @@ const NewPost = ({ BASE_URL, authToken }) => {
                     />
                     }
                 />
-                <Button className='post-form-elem' type='submit' variant="contained">Create Post</Button>
+                <Button className='post-form-elem' type='submit' variant="contained" sx={{ bgcolor:'#006d77' }} >Create Post</Button>
             </Box>
           </div>
       </div>
